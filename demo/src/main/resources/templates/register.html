@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            background: white;
+            width: 350px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin: 10px 0 5px;
+        }
+        input, select {
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .valid{
+            color: #ff2424;
+            margin: 0px;
+            padding-left: 2px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Register</h1>
+    <form action="#" th:action="@{/register}" th:object="${user}" method="post" novalidate enctype="multipart/form-data">
+        <label for="name">Name:</label>
+        <input type="text" id="name" th:field="*{name}" required />
+        <p data-th-if="${#fields.hasErrors('name')}"
+           data-th-errors="*{name}"
+           class="valid">
+        </p>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" th:field="*{email}" required />
+        <p data-th-if="${#fields.hasErrors('email')}"
+           data-th-errors="*{email}"
+           class="valid">
+        </p>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" th:field="*{password}" required />
+        <p data-th-if="${#fields.hasErrors('password')}"
+           data-th-errors="*{password}"
+           class="valid">
+        </p>
+
+        <label for="mobile">Mobile:</label>
+        <input type="text" id="mobile" th:field="*{mobile}" required />
+        <p data-th-if="${#fields.hasErrors('mobile')}"
+           data-th-errors="*{mobile}"
+           class="valid">
+        </p>
+
+        <label for="role">Role:</label>
+        <input type="text" id="role" th:field="*{role}" required />
+        <p data-th-if="${#fields.hasErrors('role')}"
+           data-th-errors="*{role}"
+           class="valid">
+        </p>
+
+        <button type="submit">Register</button>
+    </form>
+</div>
+</body>
+</html>

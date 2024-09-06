@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+    <style>
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f4f4f4;
+        }
+
+
+    body, html {
+            height: 100%;
+            width: 1270px;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('/images/office.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+
+        .user-details-wrapper {
+            opacity: 0.9;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .user-details h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .user-details p {
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .back-link a {
+            color: #1d4ed8;
+            text-decoration: none;
+        }
+
+        .back-link a:hover {
+            text-decoration: underline;
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="user-details-wrapper">
+        <div class="user-details" th:if="${user}">
+            <h2>User Details</h2>
+            <p><strong>Name:</strong> <span th:text="${user.name}">User Name</span></p>
+            <p><strong>Email:</strong> <span th:text="${user.email}">user@example.com</span></p>
+            <p><strong>Mobile:</strong> <span th:text="${user.mobile}">1234567890</span></p>
+            <p><strong>Role:</strong> <span th:text="${user.role}">User Role</span></p>
+        </div>
+
+        <h3>Attendances</h3>
+        <div th:if="${attendances != null}">
+            <table>
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="attendance : ${attendances}">
+                    <td th:text="${attendance.createdat}">2024-08-14</td>
+                    <td th:text="${attendance.Type}">In</td>
+                    <td th:text="${attendance.status}">Present</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="error-message" th:if="${error}">
+            <p th:text="${error}">User not found!</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
